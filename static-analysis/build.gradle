@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id("com.github.spotbugs") version "5.0.14"
+   // id 'pmd'
+}
+
+group = 'com.jeanneboyarsky.staticanalysis'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // config based on https://github.com/takemikami/checkstyle-custom-checks
+    checkstyle 'com.puppycrawl.tools:checkstyle:10.12.1'
+    checkstyle files('generated-libs/custom-checkstyle-1.0-SNAPSHOT.jar')
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+checkstyle {
+    // defaults to false
+    // normally want that but showing multiples in this project
+    ignoreFailures = true
+}
