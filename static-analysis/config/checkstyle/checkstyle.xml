@@ -104,6 +104,9 @@
 
     <module name="TreeWalker">
 
+        <!-- tree based rule -->
+        <module name="com.jeanneboyarsky.checkstyle.NoStandingOnTheMountain" />
+
          <module name="SuppressWarningsHolder" />
 
         <!-- Checks for Javadoc comments.                     -->
