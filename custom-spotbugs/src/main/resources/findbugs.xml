@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindbugsPlugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="findbugsplugin.xsd"
+                pluginid="com.jeanneboyarsky.spotbugs.custom-spotbugs">
+
+    <Detector class="com.jeanneboyarsky.spotbugs.DisallowDenver" reports="DENVER" speed="fast" />
+
+    <BugPattern type="DENVER" category="CORRECTNESS" abbrev="DENVER" />
+</FindbugsPlugin>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MessageCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="messagecollection.xsd">
+
+    <Plugin>
+        <ShortDescription>Jeanne's SpotBugs Plugin</ShortDescription>
+        <Details>Example of a custom plugin</Details>
+    </Plugin>
+
+    <Detector class="com.jeanneboyarsky.spotbugs.DisallowDenver">
+        <Details>
+            Does not allow Denver to appear in the code
+        </Details>
+    </Detector>
+
+    <BugPattern type="DENVER">
+        <ShortDescription>Do not use Denver in the code</ShortDescription>
+        <LongDescription>
+            Arbitrary example which disallows using Denver in the code
+        </LongDescription>
+        <Details>
+            <![CDATA[
+<p>Don't use Denver in the code</p>
+]]>
+        </Details>
+    </BugPattern>
+
+    <BugCode abbrev="DENVER">Denver missing</BugCode>
+</MessageCollection>

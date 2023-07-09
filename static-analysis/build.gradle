@@ -1,21 +1,32 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id("com.github.spotbugs") version "5.0.14"
+    id('com.github.spotbugs') version '5.0.14'
    // id 'pmd'
 }
 
 group = 'com.jeanneboyarsky.staticanalysis'
-version = '1.0-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 
 repositories {
+    flatDir {
+        dirs 'generated-libs'
+    }
     mavenCentral()
 }
 
 dependencies {
     // config based on https://github.com/takemikami/checkstyle-custom-checks
     checkstyle 'com.puppycrawl.tools:checkstyle:10.12.1'
-    checkstyle files('generated-libs/custom-checkstyle-1.0-SNAPSHOT.jar')
+    checkstyle files('generated-libs/custom-checkstyle-1.0.0-SNAPSHOT.jar')
+
+    //spotbugs 'com.github.spotbugs:spotbugs:4.7.3'
+    //spotbugs files('generated-libs/custom-spotbugs-1.0.0-SNAPSHOT.jar')
+
+    implementation 'com.github.spotbugs:spotbugs-annotations:4.7.3'
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0'
+    spotbugsPlugins 'com.jeanneboyarsky.spotbugs:custom-spotbugs:1.0.0-SNAPSHOT'
+
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
@@ -28,4 +39,29 @@ checkstyle {
     // defaults to false
     // normally want that but showing multiples in this project
     ignoreFailures = true
+}
+
+spotbugs {
+    toolVersion = '4.7.3'
+    showProgress = true
+    includeFilter = file('config/spotbugs/spotbugs-include.xml')
+
+    // defaults to false
+    // normally want that but showing multiples in this project
+    ignoreFailures = true
+}
+
+// this approach has been deprecated since gradle 7
+// there are several (duplicate) github issues to fix but hasn't been done yet
+// still works in gradle 9
+// https://github.com/spotbugs/spotbugs-gradle-plugin/issues/616
+// https://github.com/spotbugs/spotbugs-gradle-plugin/issues/819
+// https://github.com/spotbugs/spotbugs-gradle-plugin/issues/895
+spotbugsMain {
+    reports {
+        // defaults to xml (can only generate html or xml per run)
+        html {
+            enabled = true
+        }
+    }
 }

@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.jeanneboyarsky.spotbugs'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly('com.github.spotbugs:spotbugs:4.7.3')
+    testImplementation 'com.github.spotbugs:test-harness:4.7.3'
+
+    // sample test requires a junit 4 rule
+    testImplementation ('junit:junit:4.13.1')
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.9.1")
+
+   //  testImplementation platform('org.junit:junit-bom:5.9.1')
+   // testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// from https://stackoverflow.com/questions/30636905/gradle-copy-file-after-its-generation
+// copy directly to test project since not using a binary repository
+tasks.register('copyJar', Copy) {
+    from jar
+    into "${projectDir}/../static-analysis/generated-libs"
+}
+
+build.dependsOn copyJar
