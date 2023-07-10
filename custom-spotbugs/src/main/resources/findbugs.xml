@@ -4,6 +4,8 @@
                 pluginid="com.jeanneboyarsky.spotbugs.custom-spotbugs">
 
     <Detector class="com.jeanneboyarsky.spotbugs.DisallowDenver" reports="DENVER" speed="fast" />
+    <Detector class="com.jeanneboyarsky.spotbugs.StandingOnMountain" reports="MOUNTAIN" speed="fast" />
 
     <BugPattern type="DENVER" category="CORRECTNESS" abbrev="DENVER" />
+    <BugPattern type="MOUNTAIN" category="CORRECTNESS" abbrev="MOUNTAIN" />
 </FindbugsPlugin>

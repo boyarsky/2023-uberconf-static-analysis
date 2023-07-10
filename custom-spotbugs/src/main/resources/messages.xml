@@ -4,12 +4,17 @@
 
     <Plugin>
         <ShortDescription>Jeanne's SpotBugs Plugin</ShortDescription>
-        <Details>Example of a custom plugin</Details>
+        <Details>Example of custom detectors</Details>
     </Plugin>
 
     <Detector class="com.jeanneboyarsky.spotbugs.DisallowDenver">
         <Details>
             Does not allow Denver to appear in the code
+        </Details>
+    </Detector>
+    <Detector class="com.jeanneboyarsky.spotbugs.StandingOnMountain">
+        <Details>
+            Do not declare an identifier named "standing" before one named "mountain"
         </Details>
     </Detector>
 
@@ -25,5 +30,18 @@
         </Details>
     </BugPattern>
 
+    <BugPattern type="MOUNTAIN">
+        <ShortDescription>Do not use "standing" before "mountain" in the code</ShortDescription>
+        <LongDescription>
+            Arbitrary example which disallows using "standing" before "mountain" in the code
+        </LongDescription>
+        <Details>
+            <![CDATA[
+<p>Don't use "standing" before "mountain" in the code</p>
+]]>
+        </Details>
+    </BugPattern>
+
     <BugCode abbrev="DENVER">Denver missing</BugCode>
+    <BugCode abbrev="MOUNTAIN">"standing" shouldn't be before "mountain"</BugCode>
 </MessageCollection>

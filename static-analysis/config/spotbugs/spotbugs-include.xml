@@ -5,6 +5,9 @@
     <Match>
         <Bug pattern="DENVER"/>
     </Match>
+    <Match>
+        <Bug pattern="MOUNTAIN"/>
+    </Match>
 
     <!-- section of built in rules -->
     <Match>
