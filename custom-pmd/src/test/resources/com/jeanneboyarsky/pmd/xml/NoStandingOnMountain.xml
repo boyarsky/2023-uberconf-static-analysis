@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data
+        xmlns="http://pmd.sourceforge.net/rule-tests"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+    <test-code disabled="false">
+        <description>constants in wrong order</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>3</expected-linenumbers>
+        <expected-messages>
+            <message>No standing on the mountain</message>
+        </expected-messages>
+        <code><![CDATA[
+public class Constants {
+    public static final int STANDING = 1;
+    public static final int MOUNTAIN = 2;
+}
+        ]]></code>
+    </test-code>
+
+    <test-code disabled="false">
+        <description>constants in right order</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+public class Constants {
+    public static final int MOUNTAIN = 1;
+    public static final int STANDING = 2;
+}
+        ]]></code>
+    </test-code>
+
+    <test-code disabled="false">
+        <description>instance variables in wrong order</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>3</expected-linenumbers>
+        <expected-messages>
+            <message>No standing on the mountain</message>
+        </expected-messages>
+        <code><![CDATA[
+public class Constants {
+    public int standing = 1;
+    public int mountain = 2;
+}
+        ]]></code>
+    </test-code>
+
+    <test-code disabled="false">
+        <description>instance variables in right order</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+public class Constants {
+    public int mountain = 1;
+    public int standing = 2;
+}
+        ]]></code>
+    </test-code>
+
+    <test-code disabled="false">
+        <description>local variables in wrong order</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>4</expected-linenumbers>
+        <expected-messages>
+            <message>No standing on the mountain</message>
+        </expected-messages>
+        <code><![CDATA[
+public class LocalVars {
+    public void method() {
+        int standing = 1;
+        var mountain = 1;
+    }
+}
+        ]]></code>
+    </test-code>
+
+    <test-code disabled="false">
+        <description>local variables in right order</description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+public class LocalVars {
+    public void method() {
+        int mountain = 1;
+        var standing = 1;
+    }
+}
+        ]]></code>
+    </test-code>
+
+
+</test-data>

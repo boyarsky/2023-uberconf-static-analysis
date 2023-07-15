@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'checkstyle'
     id('com.github.spotbugs') version '5.0.14'
-   // id 'pmd'
+    id 'pmd'
 }
 
 group = 'com.jeanneboyarsky.staticanalysis'
@@ -20,12 +20,14 @@ dependencies {
     checkstyle 'com.puppycrawl.tools:checkstyle:10.12.1'
     checkstyle files('generated-libs/custom-checkstyle-1.0.0-SNAPSHOT.jar')
 
-    //spotbugs 'com.github.spotbugs:spotbugs:4.7.3'
-    //spotbugs files('generated-libs/custom-spotbugs-1.0.0-SNAPSHOT.jar')
-
     implementation 'com.github.spotbugs:spotbugs-annotations:4.7.3'
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0'
     spotbugsPlugins 'com.jeanneboyarsky.spotbugs:custom-spotbugs:1.0.0-SNAPSHOT'
+
+    // workaround until gradle supports PMD 7.x https://github.com/gradle/gradle/issues/24502
+    pmd 'net.sourceforge.pmd:pmd-ant:7.0.0-rc3'
+    pmd 'net.sourceforge.pmd:pmd-java:7.0.0-rc3'
+    pmd files('generated-libs/custom-pmd-1.0.0-SNAPSHOT.jar')
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -64,4 +66,16 @@ spotbugsMain {
             enabled = true
         }
     }
+}
+
+pmd {
+    toolVersion = "7.0.0-rc3"
+
+    // defaults to false
+    // normally want that but showing multiples in this project
+    ignoreFailures = true
+
+    ruleSetFiles = files("config/pmd/pmd-ruleset.xml")
+    // don't use default rulesets (seems to be optional now)
+    ruleSets = []
 }
