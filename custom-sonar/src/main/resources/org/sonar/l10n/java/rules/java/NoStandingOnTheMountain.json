@@ -1,0 +1,6 @@
+{
+  "title": "Do not put 'standing' before 'mountain' in identifiers",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "defaultSeverity": "Blocker"
+}

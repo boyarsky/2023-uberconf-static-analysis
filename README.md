@@ -31,4 +31,35 @@ export JAVAFX_HOME="/Library/Java/JavaFx/javafx-sdk-20.0.1"
 custom-pmd/lib/bin/pmd designer 
 ```
 
+## Sonar
 
+Raw Sonar:
+
+```
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+```
+
+
+Sonar with plugin:
+
+```
+mvn install
+docker build .
+docker run -d --name sonarqube-with-plugin -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 <hash>
+```
+
+
+Then
+1. Login admin/admin
+1. Accept plugin risk
+1. Extend Java quality profile and make extended on default
+1. Add two rules custom Java quality profile
+1. Create new project manually
+1. Add token to gradle scanner config
+
+After that
+
+```
+docker stop sonarqube
+docker start sonarqube
+```

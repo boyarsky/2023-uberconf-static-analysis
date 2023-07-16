@@ -31,8 +31,7 @@ public class NoStandingOnTheMountain extends AbstractCheck {
         final String name = nameAst.getText();
         if ("STANDING".equalsIgnoreCase(name)) {
             encounteredStanding = true;
-        }
-        if (encounteredStanding && "MOUNTAIN".equalsIgnoreCase(name)) {
+        } else if (encounteredStanding && "MOUNTAIN".equalsIgnoreCase(name)) {
             log(ast.getLineNo(), "standing.mountain");
         }
 

@@ -19,8 +19,7 @@ public class NoStandingOnMountainRule extends AbstractJavaRule {
 
         if (node.getName().equalsIgnoreCase("standing")) {
             sawStanding = true;
-        }
-        if (sawStanding && node.getName().equalsIgnoreCase("mountain")) {
+        } else if (sawStanding && node.getName().equalsIgnoreCase("mountain")) {
             asCtx(data).addViolation(node);
         }
         return super.visit(node, data);

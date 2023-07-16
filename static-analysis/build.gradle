@@ -1,8 +1,9 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id('com.github.spotbugs') version '5.0.14'
+    id ('com.github.spotbugs') version '5.0.14'
     id 'pmd'
+    id ('org.sonarqube') version '4.2.1.3168'
 }
 
 group = 'com.jeanneboyarsky.staticanalysis'
@@ -78,4 +79,12 @@ pmd {
     ruleSetFiles = files("config/pmd/pmd-ruleset.xml")
     // don't use default rulesets (seems to be optional now)
     ruleSets = []
+}
+
+sonar {
+    properties {
+        property 'sonar.projectKey', 'UberConf'
+        property 'sonar.projectName', 'UberConf'
+        property 'sonar.host.url', 'http://localhost:9000'
+    }
 }

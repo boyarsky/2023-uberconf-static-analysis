@@ -33,8 +33,7 @@ public class StandingOnMountain extends AnnotationDetector {
     private void checkOrder(String name1) {
         if ("standing".equalsIgnoreCase(name1)) {
             seenStanding = true;
-        }
-        if (seenStanding && "mountain".equalsIgnoreCase(name1)) {
+        } else if (seenStanding && "mountain".equalsIgnoreCase(name1)) {
             var bug = new BugInstance(this, KEY, HIGH_PRIORITY)
                     .addClass(this).addField(this);
             bugReporter.reportBug(bug);

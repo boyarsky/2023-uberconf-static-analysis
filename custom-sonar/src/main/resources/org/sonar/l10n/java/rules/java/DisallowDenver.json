@@ -1,0 +1,6 @@
+{
+  "title": "Do not use 'denver' in code",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "defaultSeverity": "Blocker"
+}
